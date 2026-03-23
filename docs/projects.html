@@ -1,0 +1,1752 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects | Abdelrahman Maghrbi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --bg2: #0f1014;
+      --surface: rgba(255, 255, 255, .05);
+      --surface2: rgba(255, 255, 255, .08);
+      --text: #f5f6f7;
+      --muted: rgba(245, 246, 247, .68);
+      --muted2: rgba(245, 246, 247, .44);
+      --stroke: rgba(255, 255, 255, .10);
+      --accent: #f6c46d;
+      --accent-dim: rgba(246, 196, 109, .12);
+      --accent-border: rgba(246, 196, 109, .22);
+      --radius: 16px;
+      --max: 1220px;
+    }
+
+    /* ── LIGHT MODE overrides ── */
+    [data-theme="light"] {
+      --bg: #f8f9fb;
+      --bg2: #eef2f6;
+      --surface: rgba(255, 255, 255, 0.88);
+      --surface2: rgba(255, 255, 255, 0.96);
+      --text: #1c2431;
+      --muted: rgba(28, 35, 49, 0.72);
+      --muted2: rgba(28, 35, 49, 0.50);
+      --stroke: rgba(28, 35, 49, 0.12);
+      --accent: #c48c24;
+      --accent-dim: rgba(196, 140, 36, 0.12);
+      --accent-border: rgba(196, 140, 36, 0.22);
+    }
+
+    [data-theme="light"] body {
+      background:
+        radial-gradient(900px 600px at 80% -5%, rgba(246, 196, 109, 0.06), transparent 55%),
+        radial-gradient(700px 500px at 10% 30%, rgba(246, 196, 109, 0.03), transparent 55%),
+        linear-gradient(180deg, #f8f9fb 0%, #eef2f6 100%);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="light"] header#topbar {
+      background: rgba(248, 249, 251, 0.85);
+    }
+
+    [data-theme="light"] .brand-dot {
+      box-shadow: 0 8px 24px rgba(246, 196, 109, 0.14);
+    }
+
+    [data-theme="light"] footer {
+      border-color: rgba(28, 35, 49, 0.12);
+    }
+
+    [data-theme="light"] .footer-desc {
+      color: rgba(28, 35, 49, 0.55);
+    }
+
+    [data-theme="light"] .module-card,
+    [data-theme="light"] .proj-card {
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 1px 3px rgba(29, 48, 77, 0.06), 0 4px 16px rgba(29, 48, 77, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border-color: rgba(95, 111, 145, 0.14);
+    }
+
+    [data-theme="light"] .module-card:hover,
+    [data-theme="light"] .proj-card:hover {
+      border-color: rgba(95, 111, 145, 0.20);
+    }
+
+    [data-theme="light"] .chip {
+      background: rgba(28, 35, 49, 0.06);
+      border-color: rgba(28, 35, 49, 0.12);
+      color: rgba(28, 35, 49, 0.72);
+    }
+
+    [data-theme="light"] .module-status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    [data-theme="light"] .module-status--live {
+      background: rgba(196, 140, 36, 0.10);
+      border: 1px solid rgba(196, 140, 36, 0.25);
+    }
+
+    [data-theme="light"] .module-status--roadmap {
+      background: rgba(28, 35, 49, 0.06);
+      border: 1px solid rgba(28, 35, 49, 0.12);
+      color: rgba(28, 35, 49, 0.72);
+    }
+
+    /* Light mode — buttons */
+    [data-theme="light"] .btn {
+      background: rgba(255, 255, 255, 0.88);
+      border-color: rgba(95, 111, 145, 0.16);
+      color: #1c2431;
+      box-shadow: none;
+    }
+
+    [data-theme="light"] .btn:hover {
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(95, 111, 145, 0.25);
+      box-shadow: 0 4px 12px rgba(29, 48, 77, 0.05);
+      transform: translateY(-1px);
+    }
+
+    /* Light mode — premium subtle active link */
+    [data-theme="light"] .tb-link.active {
+      background: rgba(95, 111, 145, 0.08);
+      border-color: rgba(95, 111, 145, 0.15);
+      box-shadow: 0 1px 2px rgba(29, 48, 77, 0.05);
+    }
+
+    [data-theme="light"] .tb-link:hover {
+      background: rgba(95, 111, 145, 0.04);
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-switch {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle {
+      width: 34px !important;
+      min-width: 34px;
+      height: 34px !important;
+      min-height: 34px;
+      flex: 0 0 34px;
+      border-radius: 8px !important;
+      overflow: hidden;
+      position: relative;
+      background: transparent !important;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
+      transition: background 0.8s ease, box-shadow 0.3s ease, border-color 0.15s;
+      border: 1px solid var(--stroke, rgba(255, 255, 255, 0.1)) !important;
+      box-sizing: border-box;
+    }
+
+    .theme-switch:hover .theme-toggle {
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.2) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+    }
+
+    .theme-switch.day .theme-toggle {
+      background: transparent !important;
+      border: 1px solid rgba(95, 111, 145, 0.15);
+      box-shadow: none !important;
+      /* No shadow, completely flat */
+    }
+
+    .theme-switch.day:hover .theme-toggle {
+      box-shadow: none;
+      /* No hover affection */
+      background: rgba(95, 111, 145, 0.04);
+      border-color: rgba(95, 111, 145, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 600px at 80% -5%, rgba(246, 196, 109, .12), transparent 55%),
+        radial-gradient(700px 500px at 10% 30%, rgba(246, 196, 109, .06), transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── TOPBAR ── */
+    header#topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(11, 11, 13, .82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .topbar__content {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .topbar__left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), rgba(246, 196, 109, .55));
+      box-shadow: 0 8px 24px rgba(246, 196, 109, .18);
+      flex: 0 0 auto;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .topbar__right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tb-link {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .tb-link:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tb-link.active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section--tight {
+      padding: 48px 0;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 56px 0 48px;
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .page-header h1 {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+    }
+
+    .page-header h1 span {
+      color: var(--accent);
+    }
+
+    .page-header .tagline {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 55ch;
+    }
+
+    /* ── SECTION LABEL ── */
+    .cv-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    /* ── FLAGSHIP CASE STUDY ── */
+    .flagship {
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .flagship-hero {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      width: 1218px;
+      margin-inline: auto;
+      box-sizing: border-box;
+      padding: 18px;
+      background:
+        radial-gradient(900px 320px at 18% 0%, rgba(79, 124, 255, .10), transparent 55%),
+        radial-gradient(700px 280px at 82% 12%, rgba(15, 175, 154, .08), transparent 52%),
+        linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+      isolation: isolate;
+    }
+
+    .flagship-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, rgba(246, 196, 109, .10) 0%, rgba(246, 196, 109, 0) 46%),
+        radial-gradient(700px 260px at 30% 0%, rgba(255, 255, 255, .08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .flagship-hero__shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border: 1px solid rgba(139, 154, 181, .24);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #f9fbff;
+      box-shadow: 0 28px 70px rgba(8, 14, 25, .30);
+    }
+
+    .flagship-hero__chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-bottom: 1px solid #e4eaf4;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%);
+    }
+
+    .flagship-hero__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .flagship-hero__mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0f172a, #3567ff);
+      color: #f8fbff;
+      font-weight: 900;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: .03em;
+      box-shadow: 0 10px 20px rgba(53, 103, 255, .18);
+      flex: 0 0 auto;
+    }
+
+    .flagship-hero__brand-copy {
+      min-width: 0;
+    }
+
+    .flagship-hero__title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1c2431;
+      line-height: 1.15;
+    }
+
+    .flagship-hero__subtitle {
+      margin-top: 2px;
+      font-size: 12px;
+      color: rgba(28, 35, 49, .58);
+    }
+
+    .flagship-hero__user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid #d9e2ef;
+      border-radius: 12px;
+      background: #fff;
+      color: #1c2431;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .flagship-hero__avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      color: #111827;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    .flagship-hero__window-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 2px;
+    }
+
+    .flagship-hero__window-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #d1d9e6;
+      display: block;
+    }
+
+    .flagship-hero__workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 2.05fr) minmax(300px, .95fr);
+      gap: 10px;
+      padding: 10px;
+      background: linear-gradient(180deg, #f6f8fc 0%, #eef3fb 100%);
+      align-items: stretch;
+    }
+
+    .hero-panel {
+      background: #fff;
+      border: 1px solid #dde5f2;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .92);
+      min-width: 0;
+    }
+
+    .sale-panel,
+    .search-panel {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .sale-panel__head {
+      padding: 14px 14px 10px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #ebeff6;
+    }
+
+    .sale-panel__title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 800;
+      color: #20242d;
+    }
+
+    .sale-panel__icon {
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #0f7d57;
+      border-radius: 4px 4px 6px 6px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .sale-panel__icon::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      top: 6px;
+      height: 1.5px;
+      background: #0f7d57;
+      box-shadow: 0 3px 0 #0f7d57;
+    }
+
+    .sale-panel__icon::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      bottom: -4px;
+      width: 3px;
+      height: 3px;
+      border-radius: 999px;
+      background: #0f7d57;
+      box-shadow: 8px 0 0 #0f7d57;
+    }
+
+    .sale-panel__toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mini-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 7px;
+      border: 1px solid #e3e8f0;
+      background: #fbfcfe;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+
+    .mini-pill--ghost {
+      background: transparent;
+    }
+
+    .sale-table {
+      padding: 8px 14px 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .sale-table__header,
+    .sale-table__row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(92px, .82fr) minmax(88px, .66fr) minmax(88px, .66fr) minmax(84px, .58fr);
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sale-table__header {
+      padding: 8px 6px;
+      color: #6b7280;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .sale-table__row {
+      padding: 10px 8px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #edf1f7;
+    }
+
+    .sale-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .sale-item__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1f2937;
+      line-height: 1.25;
+    }
+
+    .sale-item__code {
+      font-size: 12px;
+      color: #8a94a6;
+      word-break: break-all;
+    }
+
+    .sale-center {
+      display: flex;
+      justify-content: center;
+    }
+
+    .qty-stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 2px 4px;
+    }
+
+    .qty-btn,
+    .qty-value {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      border: 1px solid #dfe6f1;
+      background: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: #667085;
+      flex: 0 0 auto;
+    }
+
+    .qty-value {
+      width: 24px;
+      border: none;
+      font-size: 14px;
+      color: #20242d;
+      font-weight: 700;
+    }
+
+    .money {
+      font-size: 14px;
+      font-weight: 700;
+      color: #20242d;
+      white-space: nowrap;
+    }
+
+    .adjust-btn {
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px solid #d9e0ea;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #3f4654;
+      justify-self: start;
+      white-space: nowrap;
+    }
+
+    .summary-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 14px 14px;
+    }
+
+    .summary-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e3e9f2;
+    }
+
+    .summary-card--total {
+      background: #bdbdbd;
+      border-color: transparent;
+      color: #111827;
+    }
+
+    .summary-card--total .summary-label,
+    .summary-card--total .summary-value {
+      color: #111827;
+    }
+
+    .summary-label {
+      font-size: 13px;
+      color: rgba(28, 35, 49, .7);
+    }
+
+    .summary-value {
+      font-size: 15px;
+      font-weight: 800;
+      color: inherit;
+      white-space: nowrap;
+    }
+
+    .payment-bar {
+      padding: 0 14px 14px;
+    }
+
+    .payment-card {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid #e3e9f2;
+      display: grid;
+      gap: 10px;
+    }
+
+    .payment-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .payment-label {
+      font-weight: 700;
+      color: #20242d;
+    }
+
+    .cash-input {
+      width: 116px;
+      padding: 8px 10px;
+      border: 1px solid #d9e2ef;
+      border-radius: 8px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cash-input__clear {
+      color: #9aa3b2;
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .quick-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .quick-button {
+      padding: 7px 12px;
+      border-radius: 8px;
+      border: 1px solid #d9e0ea;
+      background: #fff;
+      font-size: 13px;
+      color: #3f4654;
+      white-space: nowrap;
+    }
+
+    .payment-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .change-pill {
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #c4c4c4;
+      color: #111827;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .change-pill strong {
+      font-weight: 800;
+    }
+
+    .complete-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #0ea5a5;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 12px 24px rgba(14, 165, 165, .22);
+      white-space: nowrap;
+    }
+
+    .search-panel__head {
+      padding: 14px;
+      border-bottom: 1px solid #ebeff6;
+    }
+
+    .search-panel__title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #20242d;
+      margin-bottom: 4px;
+    }
+
+    .search-panel__text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #6b7280;
+    }
+
+    .search-input {
+      margin-top: 10px;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid #dce3ef;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #9aa3b2;
+      font-size: 14px;
+    }
+
+    .search-input__icon {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid #9aa3b2;
+      border-radius: 999px;
+      position: relative;
+      flex: 0 0 auto;
+      margin-left: 2px;
+    }
+
+    .search-input__icon::after {
+      content: '';
+      position: absolute;
+      width: 7px;
+      height: 1.5px;
+      background: #9aa3b2;
+      right: -5px;
+      bottom: -2px;
+      transform: rotate(45deg);
+      border-radius: 999px;
+    }
+
+    .search-input__field {
+      color: #9aa3b2;
+      font-size: 14px;
+    }
+
+    .search-results {
+      padding: 10px 14px 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .search-meta {
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #8a94a6;
+      padding: 0 2px;
+    }
+
+    .product-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid #e1e7f1;
+      background: #fff;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .92);
+      transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    }
+
+    .product-card--active {
+      border-color: #4c7eff;
+      box-shadow: 0 0 0 1px rgba(76, 126, 255, .08);
+    }
+
+    .product-card__info {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .product-card__name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #20242d;
+    }
+
+    .product-card__price {
+      font-size: 12px;
+      color: #8a94a6;
+    }
+
+    .product-card__arrow {
+      color: #4c7eff;
+      font-size: 30px;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    .flagship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(246, 196, 109, .24);
+      background: rgba(11, 11, 13, .78);
+      box-shadow: 0 18px 40px rgba(11, 11, 13, .20);
+      justify-self: start;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .flagship-badge .pill {
+      background: var(--accent);
+      color: #141416;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .flagship-badge .badge-text {
+      font-size: 12px;
+      color: rgba(245, 246, 247, .72);
+      line-height: 1.4;
+    }
+
+    .flagship-body {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .flagship-body h2 {
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .flagship-body .lead {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .flagship-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .flagship-step {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .flagship-step:first-child {
+      padding-top: 0;
+    }
+
+    .flagship-step:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .flagship-step-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .flagship-step p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .flagship-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+    }
+
+    .flagship-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f0f2f5;
+      box-shadow: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+    }
+
+    .btn--gold {
+      border: 1px solid rgba(246, 196, 109, 0.4);
+      background: linear-gradient(135deg, #e4aa45, #fac86f);
+      color: #141416;
+      box-shadow: 0 4px 12px rgba(223, 165, 67, 0.05);
+    }
+
+    .btn--gold:hover {
+      background: linear-gradient(135deg, #ebaf47, #ffce72);
+      box-shadow: 0 6px 16px rgba(223, 165, 67, 0.2);
+      border-color: rgba(246, 196, 109, 0.5);
+      transform: translateY(-1px);
+      color: #141416;
+    }
+
+    /* ── MODULES GRID ── */
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .module-card {
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      background: var(--surface);
+      padding: 18px;
+      transition: border-color .15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(200px 120px at 20% 0%, rgba(246, 196, 109, .08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .module-card:hover {
+      border-color: rgba(255, 255, 255, .18);
+    }
+
+    .module-card h3 {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .module-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .module-status {
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .module-status--live {
+      color: var(--accent);
+    }
+
+    .module-status--roadmap {
+      color: var(--muted2);
+    }
+
+    /* --- DAY STATE ANIMATIONS --- */
+
+    .theme-switch.day .theme-toggle .moon {
+      transform: translate(-80px, 20px);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    }
+
+    .theme-switch.day .theme-toggle .mountains {
+      transform: translate(0, 0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+    }
+
+    .theme-switch.day .theme-toggle .sun {
+      transform: translateY(0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
+    }
+
+    .theme-switch.day .theme-toggle .stars {
+      opacity: 0;
+      transition: opacity 0.4s ease 0s;
+    }
+
+    .theme-toggle .moon {
+      transform: translate(0, 0);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
+    }
+
+    .theme-toggle .sun {
+      transform: translateY(80px);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    }
+
+    .theme-toggle .stars {
+      transition: opacity 0.4s ease 0.8s;
+      fill: rgba(255, 255, 255, 0.9);
+    }
+
+    .theme-toggle .mountains {
+      transform: translate(80px, 20px);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+    }
+
+    /* ── OTHER PROJECTS ── */
+    .other-projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .proj-card {
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 22px;
+      transition: border-color .15s;
+    }
+
+    .proj-card:hover {
+      border-color: rgba(255, 255, 255, .18);
+    }
+
+    .proj-type {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .proj-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .proj-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--stroke);
+      background: var(--surface2);
+      color: var(--muted2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--stroke);
+      color: var(--muted2);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-title {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .flagship-body {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .modules-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .other-projects {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .topbar__right {
+        gap: 8px;
+      }
+
+      .tb-link {
+        font-size: 11px;
+      }
+
+      .brand-sub {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 13px;
+      }
+
+      .brand-dot {
+        width: 20px;
+        height: 20px;
+      }
+
+      .topbar__content {
+        padding: 10px 14px;
+        gap: 8px;
+      }
+
+      .theme-toggle {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+      }
+
+      .page-header h1 {
+        font-size: 30px;
+      }
+
+      .flagship-body {
+        padding: 20px;
+      }
+
+      .modules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <div class="topbar__content">
+      <div class="topbar__left">
+        <div>
+          <div class="brand-name">Abdelrahman Maghrbi</div>
+          <div class="brand-sub">Software Engineer</div>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <a class="tb-link" href="index.html">Home</a>
+        <a class="tb-link" href="resume.html">Resume</a>
+        <a class="tb-link active" href="projects.html">Projects</a>
+        <button class="theme-switch" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div class="wrap">
+        <h1>Projects <span>—</span></h1>
+        <p class="tagline">Engineering work focused on robust architecture, fast workflows, and applications built to survive the real world.</p>
+      </div>
+    </div>
+
+    <!-- FLAGSHIP -->
+    <section id="nexill" class="section">
+      <div class="wrap">
+        <div class="cv-label">Flagship Project</div>
+        <div class="flagship">
+          <div class="flagship-hero">
+            <div class="flagship-hero__shell" aria-label="Retail Store POS dashboard preview">
+              <div class="flagship-hero__chrome">
+                <div class="flagship-hero__brand">
+                  <div class="flagship-hero__mark" aria-hidden="true">N</div>
+                  <div class="flagship-hero__brand-copy">
+                    <div class="flagship-hero__title">Retail Store</div>
+                    <div class="flagship-hero__subtitle">Fast checkout and daily store control</div>
+                  </div>
+                </div>
+                <div class="flagship-hero__user">
+                  <div class="flagship-hero__avatar" aria-hidden="true">A</div>
+                  <span>Administrator</span>
+                  <div class="flagship-hero__window-dots" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flagship-hero__workspace">
+                <div class="sale-panel hero-panel">
+                  <div class="sale-panel__head">
+                    <div class="sale-panel__title">
+                      <span class="sale-panel__icon" aria-hidden="true"></span>
+                      <span>Current Sale</span>
+                    </div>
+                    <div class="sale-panel__toolbar">
+                      <span class="mini-pill">5 PRODUCTS</span>
+                      <span class="mini-pill mini-pill--ghost">Discount</span>
+                      <span class="mini-pill mini-pill--ghost">Clear</span>
+                    </div>
+                  </div>
+
+                  <div class="sale-table">
+                    <div class="sale-table__header">
+                      <div>Item</div>
+                      <div class="sale-center">Qty</div>
+                      <div>Price</div>
+                      <div>Total</div>
+                      <div>Adjust</div>
+                    </div>
+
+                    <div class="sale-table__row">
+                      <div class="sale-item">
+                        <div class="sale-item__name">Water 1L</div>
+                        <div class="sale-item__code">300000000000001</div>
+                      </div>
+                      <div class="sale-center">
+                        <div class="qty-stepper" aria-hidden="true">
+                          <div class="qty-btn">-</div>
+                          <div class="qty-value">1</div>
+                          <div class="qty-btn">+</div>
+                        </div>
+                      </div>
+                      <div class="money">USD 1.20</div>
+                      <div class="money">USD 1.20</div>
+                      <div class="adjust-btn">Remove</div>
+                    </div>
+
+                    <div class="sale-table__row">
+                      <div class="sale-item">
+                        <div class="sale-item__name">Suger 1Kg</div>
+                        <div class="sale-item__code">200000000000004</div>
+                      </div>
+                      <div class="sale-center">
+                        <div class="qty-stepper" aria-hidden="true">
+                          <div class="qty-btn">-</div>
+                          <div class="qty-value">1</div>
+                          <div class="qty-btn">+</div>
+                        </div>
+                      </div>
+                      <div class="money">USD 5.00</div>
+                      <div class="money">USD 5.00</div>
+                      <div class="adjust-btn">Remove</div>
+                    </div>
+
+                    <div class="sale-table__row">
+                      <div class="sale-item">
+                        <div class="sale-item__name">Milk 1L</div>
+                        <div class="sale-item__code">1234</div>
+                      </div>
+                      <div class="sale-center">
+                        <div class="qty-stepper" aria-hidden="true">
+                          <div class="qty-btn">-</div>
+                          <div class="qty-value">1</div>
+                          <div class="qty-btn">+</div>
+                        </div>
+                      </div>
+                      <div class="money">USD 15.00</div>
+                      <div class="money">USD 15.00</div>
+                      <div class="adjust-btn">Remove</div>
+                    </div>
+
+                    <div class="sale-table__row">
+                      <div class="sale-item">
+                        <div class="sale-item__name">Coffee 125g</div>
+                        <div class="sale-item__code">200000000000012</div>
+                      </div>
+                      <div class="sale-center">
+                        <div class="qty-stepper" aria-hidden="true">
+                          <div class="qty-btn">-</div>
+                          <div class="qty-value">2</div>
+                          <div class="qty-btn">+</div>
+                        </div>
+                      </div>
+                      <div class="money">USD 12.00</div>
+                      <div class="money">USD 24.00</div>
+                      <div class="adjust-btn">Remove</div>
+                    </div>
+                  </div>
+
+                  <div class="summary-bar">
+                    <div class="summary-card">
+                      <div class="summary-label">Subtotal</div>
+                      <div class="summary-value">USD 45.20</div>
+                    </div>
+                    <div class="summary-card">
+                      <div class="summary-label">Tax</div>
+                      <div class="summary-value">USD 0.00</div>
+                    </div>
+                    <div class="summary-card summary-card--total">
+                      <div class="summary-label">Total</div>
+                      <div class="summary-value">USD 45.20</div>
+                    </div>
+                  </div>
+
+                  <div class="payment-bar">
+                    <div class="payment-card">
+                      <div class="payment-row">
+                        <div class="payment-label">Cash</div>
+                        <div class="payment-actions">
+                          <div class="change-pill">
+                            <span>Change:</span>
+                            <strong>USD 4.80</strong>
+                          </div>
+                          <div class="complete-btn">Complete Sale</div>
+                        </div>
+                      </div>
+                      <div class="payment-row">
+                        <div class="cash-input">
+                          <span>50</span>
+                          <span class="cash-input__clear" aria-hidden="true">×</span>
+                        </div>
+                        <div class="quick-buttons">
+                          <div class="quick-button">Exact</div>
+                          <div class="quick-button">USD 5.00</div>
+                          <div class="quick-button">USD 10.00</div>
+                          <div class="quick-button">USD 20.00</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <aside class="search-panel hero-panel">
+                  <div class="search-panel__head">
+                    <div class="search-panel__title">Find Product</div>
+                    <p class="search-panel__text">Search by product name or barcode, then add the selected item to the sale.</p>
+                    <div class="search-input">
+                      <span class="search-input__icon" aria-hidden="true"></span>
+                      <span class="search-input__field">Search products</span>
+                    </div>
+                  </div>
+                  <div class="search-results">
+                    <div class="search-meta">4 PRODUCTS</div>
+
+                    <div class="product-card">
+                      <div class="product-card__info">
+                        <div class="product-card__name">Coffee 125g</div>
+                        <div class="product-card__price">12</div>
+                      </div>
+                      <div class="product-card__arrow" aria-hidden="true">→</div>
+                    </div>
+
+                    <div class="product-card">
+                      <div class="product-card__info">
+                        <div class="product-card__name">Milk 1L</div>
+                        <div class="product-card__price">15</div>
+                      </div>
+                      <div class="product-card__arrow" aria-hidden="true">→</div>
+                    </div>
+
+                    <div class="product-card">
+                      <div class="product-card__info">
+                        <div class="product-card__name">Suger 1Kg</div>
+                        <div class="product-card__price">5</div>
+                      </div>
+                      <div class="product-card__arrow" aria-hidden="true">→</div>
+                    </div>
+
+                    <div class="product-card product-card--active">
+                      <div class="product-card__info">
+                        <div class="product-card__name">Water 1L</div>
+                        <div class="product-card__price">1.2</div>
+                      </div>
+                      <div class="product-card__arrow" aria-hidden="true">→</div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </div>
+            <div class="flagship-badge">
+              <span class="pill">v1.0 — Live</span>
+              <span class="badge-text">Windows desktop · Retail POS · C# / .NET</span>
+            </div>
+          </div>
+          <div class="flagship-body">
+            <div>
+              <h2>Nexill Retail POS</h2>
+              <p class="lead">Manual paper checkouts cost small stores massive amounts of time and money. I built Nexill
+                POS entirely from scratch in C#/.NET to solve this. It replaces paper workflows with a lightning-fast
+                digital checkout system engineered strictly for rapid cashier operations, resilient transactions, and
+                total owner control.</p>
+              <div class="flagship-tags">
+                <span class="tag">C# / .NET</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Role Permissions</span>
+                <span class="tag">Tax Logic</span>
+                <span class="tag">Receipt Workflows</span>
+                <span class="tag">Keyboard-first UX</span>
+              </div>
+              <div class="flagship-actions">
+                <a class="btn btn--gold" href="https://www.nexillretail.store/" target="_blank" rel="noreferrer">View product
+                  →</a>
+                <a class="btn" href="resume.html">Full resume</a>
+              </div>
+            </div>
+            <div class="flagship-steps">
+              <div class="flagship-step">
+                <div class="flagship-step-label">Problem</div>
+                <p>Traditional selling methods in small stores slow checkout, increase billing mistakes, and create
+                  long queues at peak hours.</p>
+              </div>
+              <div class="flagship-step">
+                <div class="flagship-step-label">Solution</div>
+                <p>Nexill replaces manual billing with a faster POS workflow, resilient transactions, role-based
+                  controls, and clean checkout operations.</p>
+              </div>
+              <div class="flagship-step">
+                <div class="flagship-step-label">Impact</div>
+                <p>Stores process customers faster, reduce operational errors, and build a stronger path toward
+                  inventory visibility and analytics.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE MODULES -->
+    <section id="modules" class="section section--tight" style="padding-top:0">
+      <div class="wrap">
+        <div class="cv-label">Core Modules — Nexill POS</div>
+        <div class="modules-grid">
+          <div class="module-card">
+            <h3>Checkout Flow</h3>
+            <p>Fast checkout workflow with quick product lookup, quantity updates, and receipt generation.</p>
+            <div class="module-status module-status--live">✓ Live</div>
+          </div>
+          <div class="module-card">
+            <h3>Product Management</h3>
+            <p>Full product catalog with category support, tax assignment, and pricing controls per store configuration.
+            </p>
+            <div class="module-status module-status--live">✓ Live</div>
+          </div>
+          <div class="module-card">
+            <h3>Role & Permissions</h3>
+            <p>Owner, manager, and cashier roles with controlled access — each role sees only what they need.</p>
+            <div class="module-status module-status--live">✓ Live</div>
+          </div>
+          <div class="module-card">
+            <h3>Tax & Receipts</h3>
+            <p>Configurable tax rules applied at checkout, plus printable and recordable receipt workflows.</p>
+            <div class="module-status module-status--live">✓ Live</div>
+          </div>
+          <div class="module-card">
+            <h3>Inventory Module</h3>
+            <p>Stock tracking, low-inventory alerts, and supplier-ready purchase order flow now live.</p>
+            <div class="module-status module-status--live">✓ Live</div>
+          </div>
+          <div class="module-card">
+            <h3>Analytics Dashboard</h3>
+            <p>Simple owner-facing sales summaries, daily totals, and product performance — planned as a core visibility
+              tool.</p>
+            <div class="module-status module-status--roadmap">⟳ Roadmap</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OTHER PROJECTS -->
+    <section id="other" class="section">
+      <div class="wrap">
+        <div class="cv-label">Other Work</div>
+        <div class="other-projects">
+          <div class="proj-card">
+            <div class="proj-type">Web Engineering</div>
+            <h3>Engineering Portfolio</h3>
+            <p>A multi-page portfolio engineered with React (Vite) and vanilla HTML/CSS to maximize rendering speed and recruiter conversion. Built entirely around an evidence-first case study structure and custom design system.</p>
+            <div class="proj-stack">
+              <span class="chip">React</span>
+              <span class="chip">Vite</span>
+              <span class="chip">HTML / CSS</span>
+              <span class="chip">Design Systems</span>
+            </div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-type">Technical Communication</div>
+            <h3>Product Documentation & Specs</h3>
+            <p>Structured technical writing for Nexill — covering product architecture, module specs, and user-facing
+              documentation. Focused on clarity and engineering credibility.</p>
+            <div class="proj-stack">
+              <span class="chip">Technical Writing</span>
+              <span class="chip">Prompt Engineering</span>
+              <span class="chip">Product Specs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>
+        <div class="footer-title">Portfolio</div>
+        <div class="footer-desc">Reliable product execution, practical architecture, clear communication.</div>
+      </div>
+      <nav class="footer-nav">
+        <a class="tb-link" href="index.html">Home</a>
+        <a class="tb-link" href="resume.html">Resume</a>
+        <a class="tb-link" href="projects.html">Projects</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="themeSVG.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('themeToggle');
+      if (window.themeToggleSVGString) {
+        btn.innerHTML = window.themeToggleSVGString;
+      }
+      // Resume/projects are dark by default — light mode is the override
+      var saved = '';
+      try { saved = localStorage.getItem('theme') || ''; } catch (e) { }
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          btn.classList.add('day');
+          btn.setAttribute('aria-label', 'Switch to dark mode');
+          btn.setAttribute('title', 'Dark mode');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          btn.classList.remove('day');
+          btn.setAttribute('aria-label', 'Switch to light mode');
+          btn.setAttribute('title', 'Light mode');
+        }
+      }
+
+      applyTheme(saved || 'dark');
+
+      btn.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        try { localStorage.setItem('theme', next); } catch (e) { }
+      });
+    })();
+
+    (function () {
+      var hero = document.querySelector('.flagship-hero');
+      if (!hero) return;
+
+      var BASE_WIDTH = 1218;
+
+      function syncHeroScale() {
+        var available = hero.parentElement ? hero.parentElement.clientWidth : window.innerWidth;
+        var scale = Math.min(1, available / BASE_WIDTH);
+        hero.style.zoom = scale.toFixed(3);
+      }
+
+      syncHeroScale();
+      window.addEventListener('resize', syncHeroScale, { passive: true });
+    })();
+  </script>
+
+</body>
+
+</html>

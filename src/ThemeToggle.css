@@ -1,0 +1,91 @@
+/* ThemeToggle.css */
+
+.theme-switch {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.theme-toggle {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #1a1b26;
+    /* Night sky color */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: background 0.8s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-switch:hover .theme-toggle {
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Day Background */
+.theme-switch.day .theme-toggle {
+    background: transparent;
+    /* Blend seamlessly with topbar */
+    border: 1px solid rgba(95, 111, 145, 0.15);
+    box-shadow: none;
+    /* No shadow, completely flat */
+}
+
+.theme-switch.day:hover .theme-toggle {
+    box-shadow: none;
+    /* No hover affection */
+    background: rgba(95, 111, 145, 0.04);
+    border-color: rgba(95, 111, 145, 0.25);
+}
+
+/* Elements */
+.theme-toggle .moon {
+    transform: translate(0, 0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
+}
+
+.theme-toggle .sun {
+    transform: translateY(80px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.theme-toggle .stars {
+    transition: opacity 0.4s ease 0.8s;
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+.theme-toggle .mountains {
+    transform: translate(80px, 20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+/* --- DAY STATE ANIMATIONS --- */
+
+.theme-switch.day .theme-toggle .moon {
+    transform: translate(-80px, 20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+}
+
+.theme-switch.day .theme-toggle .mountains {
+    transform: translate(0, 0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+}
+
+.theme-switch.day .theme-toggle .sun {
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s;
+}
+
+.theme-switch.day .theme-toggle .stars {
+    opacity: 0;
+    transition: opacity 0.4s ease 0s;
+}

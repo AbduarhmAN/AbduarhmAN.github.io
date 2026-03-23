@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Abdelrahman Maghrbi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --bg2: #eef2f6;
+      --text: #1c2431;
+      --muted: rgba(28, 35, 49, 0.72);
+      --muted2: rgba(28, 35, 49, 0.58);
+      --stroke: rgba(28, 35, 49, 0.12);
+      --surface: #f3f7fc;
+      --surface2: #edf3fb;
+      --accent: #2f6bff;
+      --accent2: #0faf9a;
+      --max: 1280px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 70% -10%, rgba(47, 107, 255, 0.22), transparent 55%),
+        radial-gradient(900px 600px at 15% 20%, rgba(15, 175, 154, 0.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(248, 249, 251, 0.86);
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .topbar {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent2), #2f6bff);
+      box-shadow: 0 10px 30px rgba(47, 107, 255, 0.24);
+      flex: 0 0 auto;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted2);
+    }
+
+    .nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .kicker {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted2);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 10px 0 10px;
+      font-size: 46px;
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 60ch;
+    }
+
+    .hero-media {
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      min-height: 360px;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+      position: relative;
+    }
+
+    .hero-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(248, 249, 251, .45) 0%, rgba(248, 249, 251, .05) 60%);
+      z-index: 2;
+    }
+
+    .hero-media__img {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(0, 0, 0, .08), rgba(0, 0, 0, .22)), url('hero-portrait.webp');
+      background-size: cover;
+      background-position: 50% 22%;
+      z-index: 1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      background: linear-gradient(180deg, var(--surface), var(--surface2));
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 11px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .btn-primary {
+      border: none;
+      color: #f7faff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 12px 28px rgba(47, 107, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      color: #f7faff;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--stroke);
+      color: var(--muted2);
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-dot" aria-hidden="true"></div>
+        <div>
+          <div class="brand-name">Abdelrahman Maghrbi</div>
+          <div class="brand-sub">Software Engineer</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Main links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="wrap hero">
+        <div>
+          <p class="kicker">About</p>
+          <h1>I build software that businesses can actually rely on.</h1>
+          <p class="lead">
+            No fluff, no over-engineering. I am a Software Engineer focused on delivering practical architecture, stable
+            workflows, and clear communication. From desktop systems to web platforms, I build maintainable solutions
+            that solve real day-to-day operational problems.
+          </p>
+          <div class="cta">
+            <a class="btn btn-primary" href="projects.html">See projects</a>
+            <a class="btn" href="resume.html">View resume</a>
+          </div>
+        </div>
+        <div class="hero-media" aria-label="Profile image">
+          <div class="hero-media__img" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer>
+    <div class="wrap">About page is now stable and linked to the same visual language as the main portfolio.</div>
+  </footer>
+</body>
+
+</html>
