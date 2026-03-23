@@ -19,4 +19,8 @@ for (const page of staticPages) {
   }
 }
 
+if (existsSync('legacy/index.static.html')) {
+  cpSync('legacy/index.static.html', 'docs/index.html')
+}
+
 console.log('Copied dist -> docs for GitHub Pages')
